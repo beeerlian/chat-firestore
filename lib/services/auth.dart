@@ -35,15 +35,15 @@ class AuthService {
     }
   }
 
-  Future resetPass(String email) async {
+ 
+  Future signOut() async {
     try {
-      return await _auth.sendPasswordResetEmail(email: email);
+      return await _auth.signOut();
     } catch (e) {
       print(e.toString());
       return null;
     }
   }
-
   Future<FirebaseUser> signInWithGoogle(BuildContext context) async {
     final GoogleSignIn _googleSignIn = new GoogleSignIn();
 
@@ -64,13 +64,14 @@ class AuthService {
       Navigator.push(context, MaterialPageRoute(builder: (context) => Chat()));
     }
   }
-
-  Future signOut() async {
+  Future resetPass(String email) async {
     try {
-      return await _auth.signOut();
+      return await _auth.sendPasswordResetEmail(email: email);
     } catch (e) {
       print(e.toString());
       return null;
     }
   }
+
+  
 }
